@@ -66,6 +66,7 @@ end
 
 def self.play_turn(column, player) 
     insert_player_coin(column, player)
+    winner(player)
     toggle_player
 end
 
@@ -78,6 +79,24 @@ def self.computer_play
   end
   column_picked = available_cells.sample if available_cells
   play_turn(column_picked, @p2) 
+end
+
+
+def self.win_horizontal
+  true
+end
+
+def self.win_vertical
+end
+
+def self.win_diagonal
+end
+
+def self.winner(player)
+ if  win_horizontal || win_vertical || win_diagonal
+  puts "Player #{player} Wins!!!" 
+  exit
+ end
 end
 
 
