@@ -51,6 +51,8 @@ def self.insert_player_coin(column, player)
     if row[column] == 0
       row[column] = player
       show_board(@board)
+      puts "Player #{player} played in column #{column}!"
+      puts
       break
     end
   end
