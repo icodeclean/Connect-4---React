@@ -5,6 +5,9 @@ class Connect4
     [nil, nil, nil]
   ]
 
+  @p1 = 1
+  @p2 = 2
+
 def self.show_board(array)
   puts 
   puts 'This is the Board'
@@ -17,7 +20,30 @@ def self.show_board(array)
   puts
 end
 
+def self.insert_player_coin(column, player)
+  for row in @board.reverse do  #iterate starting from bottom row
+    if row[column].nil?
+      row[column]=player
+      show_board(@board)
+      break
+    end
+  end
+end
+
+
+
+
 show_board(@board)
+insert_player_coin(2,@p1)
+insert_player_coin(0,@p2)
+insert_player_coin(0,@p1)
+insert_player_coin(0,@p2)
+insert_player_coin(1,@p1)
+insert_player_coin(2,@p2)
+insert_player_coin(1,@p1)
+insert_player_coin(2,@p2)
+insert_player_coin(1,@p1)
+
 
 end
 
