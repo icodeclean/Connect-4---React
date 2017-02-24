@@ -1,24 +1,29 @@
 class Connect4
   @board = [
-    [0, 0, 0],
-    [0, 0, 0],
-    [0, 0, 0]
+    [0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0]
   ]
 
   @p1 = 1
   @p2 = 2
+  @coins = 42
   @current_player_is_p1 = true
+
 
 
 def self.show_board(array)
   puts 
   puts 'Connect 4'
-  puts '*' * 10
+  puts '*' * 20
   array.each do |row|
     print row
     puts
   end
-  puts '*' * 10
+  puts '*' * 20
   puts
 end
 
@@ -63,22 +68,13 @@ def self.play_turn(column, player)
 end
 
 def self.computer_play
-  column_picked = 1
-  available_cells = []
-  for row in @board.reverse do
-   if row.include?(0)
-      row.each_with_index do |x , index|
-        if x == 0
-          available_cells << index
-          puts 'available: ' 
-          p available_cells.join(',')
-          column_picked = available_cells.sample
-          puts 'picked: ' + column_picked.to_s
-        end
-      end
+  if @board.first.include?(0)
+    available_cells = []
+    @board.first.each_with_index do |x , index|
+      available_cells << index if x == 0
     end
-    break
   end
+  column_picked = available_cells.sample if available_cells
   play_turn(column_picked, @p2) 
 end
 
@@ -86,7 +82,7 @@ end
 def self.game_play
   show_board(@board)
   i = 0
-  while (i < 9) do
+  while (i < @coins) do
     if @current_player_is_p1
       column = get_player_input
       play_turn(column, @p1)
