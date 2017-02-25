@@ -83,17 +83,36 @@ end
 
 
 def self.win_horizontal
-  true
+  for row in @board.reverse do
+    if (/1{4}/.match?(row.join()) || /2{4}/.match?(row.join()))
+      return true
+    else
+      return false
+    end
+  end
 end
 
 def self.win_vertical
+  i = 0
+  while (i < 6) do
+    column =[]
+    for row in @board do
+      column << row[i]
+    end
+    if (/1{4}/.match?(column.join()) || /2{4}/.match?(column.join()))
+      return true
+    end
+    i += 1
+  end
+  false
 end
 
 def self.win_diagonal
+  false
 end
 
 def self.winner(player)
- if  win_horizontal || win_vertical || win_diagonal
+ if  (win_horizontal || win_vertical || win_diagonal)
   puts "Player #{player} Wins!!!" 
   exit
  end
