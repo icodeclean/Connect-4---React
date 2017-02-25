@@ -1,0 +1,19 @@
+body {
+  font: 14px "Century Gothic", Futura, sans-serif;
+  margin: 20px;
+}
+
+.cell {
+  height: 60px;
+  width: 60px;
+  border-right: 10px solid blue;
+  border-left: 10px solid blue;
+  background-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 59%, blue 60%, blue 100%);
+}
+
+.redCoin {
+  background-image: radial-gradient(ellipse at center, red 44%, #cc0000 45%, #cc0000, 59%, blue 60%, blue 100%);
+}
+.yellowCoin {
+  background-image: radial-gradient(ellipse at center, yellow 44%, #cccc00 45%, #cccc00 59%, blue 60%, blue 100%);
+}
