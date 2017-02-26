@@ -21,12 +21,13 @@ class Board extends React.Component {
     this.state = {
       grid: [
               [null, null, null, null, null, null, null],
-              ['y', null, 'y', null, null, null, null],
-              ['y', null, null, null, null, null, null],
-              ['y', null, null, null, 'y', null, null],
-              ['y', null, null, null, null, null, null],
-              ['y', null, null, null, null, 'r', null],
-      ]
+              [null, null, null, null, null, null, null],
+              [null, null, null, null, null, null, null],
+              [null, null, null, null, null, null, null],
+              [null, null, null, null, null, null, null],
+              [null, null, null, null, null, null, null],
+      ],
+      redIsNext: true,
     };
   }
 
@@ -38,10 +39,12 @@ dropInColumn(col) {
   const grid = this.state.grid.slice();
   for( var i = 5; i > -1; i--) {
     if (grid[i][col] == null){
-      grid[i][col] = 'y';
-      this.setState({ grid: grid});
+      grid[i][col] = this.state.redIsNext ? 'r' : 'y';
+      this.setState({ 
+        grid: grid,
+        redIsNext: !this.state.redIsNext
+      });
       return;
-    
     } 
   }
 }
