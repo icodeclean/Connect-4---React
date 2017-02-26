@@ -3,31 +3,41 @@ body {
   margin: 20px;
 }
 
+.boardBg{
+  background-image: url('../asserts/bg.png');
+  width: 651px;
+  height: 504px;
+  background-repeat: no-repeat;
+  background-size: cover; 
+  background-color: #333;
+  display: box;
+  margin: auto;
+}
+
 .board{
-  width: 470px;
-  height: 360px;
-  display: inline;
+  width: 651px;
+  height: 504px;
+  padding-left: 45px;
+  padding-top: 78px;
   cursor: pointer;
 }
 
 .column{
   width: 60px;
   height: 360px;
-  float: left;
   margin: 0px 10px;
+  display: inline-block;
 }
 
 .cell {
   height: 60px;
   width: 60px;
-  border-right: 10px solid blue;
-  border-left: 10px solid blue;
-  background-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 59%, blue 60%, blue 100%);
+  background-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 0%,);
 }
 
 .redCoin {
-  background-image: radial-gradient(ellipse at center, red 44%, #cc0000 45%, #cc0000, 59%, blue 60%, blue 100%);
+  background-image: radial-gradient(ellipse at center, red 44%, #cc0000 45%, #cc0000, 59%, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0) 0%);
 }
 .yellowCoin {
-  background-image: radial-gradient(ellipse at center, yellow 44%, #cccc00 45%, #cccc00 59%, blue 60%, blue 100%);
+  background-image: radial-gradient(ellipse at center, yellow 44%, #cccc00 45%, #cccc00 59%, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0) 0%);
 }
