@@ -10,7 +10,7 @@ class Cell extends React.Component {
   }
   render() {
     return (
-      <div className={"cell " + this.cellClass(this.props.cellValue)}></div>
+      <div className={"cell " + this.cellClass(this.props.cellValue)} onClick={() => this.props.onClick()}></div>
     );
   }
 };
@@ -21,18 +21,31 @@ class Board extends React.Component {
     this.state = {
       grid: [
               [null, null, null, null, null, null, null],
-              [null, null, 'y', null, null, null, null],
-              [null, null, null, null, null, null, null],
-              ['r', null, null, null, 'y', null, null],
-              [null, null, null, null, null, null, null],
-              [null, null, null, null, null, 'r', null],
+              ['y', null, 'y', null, null, null, null],
+              ['y', null, null, null, null, null, null],
+              ['y', null, null, null, 'y', null, null],
+              ['y', null, null, null, null, null, null],
+              ['y', null, null, null, null, 'r', null],
       ]
     };
   }
 
 renderCell(col, row) {
-  return <Cell cellValue={this.state.grid[row][col]}  />
+  return <Cell cellValue={this.state.grid[row][col]} onClick={() => this.dropInColumn(col)}/>
 }
+
+dropInColumn(col) {
+  const grid = this.state.grid.slice();
+  for( var i = 5; i > -1; i--) {
+    if (grid[i][col] == null){
+      grid[i][col] = 'y';
+      this.setState({ grid: grid});
+      return;
+    
+    } 
+  }
+}
+
   render() {
     return (
       <div className="board">
