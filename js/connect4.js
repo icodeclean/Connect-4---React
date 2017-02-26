@@ -68,8 +68,8 @@ renderCell(col, row) {
 }
   render() {
     return (
-      <div className="boardBg">
-        <div className="board">
+      <div className="board">
+        <div className="grid">
           <div className="column">
             {this.renderCell(0, 0)}
             {this.renderCell(0, 1)}
@@ -133,6 +133,7 @@ renderCell(col, row) {
             {this.renderCell(6, 5)}
           </div>
         </div>
+        <div className={"status " + (this.state.redIsNext ? 'r' : 'y')}><p>{this.state.redIsNext ? "Red's Turn" : "Yellow's Turn"}</p></div>
       </div>
     );
   }

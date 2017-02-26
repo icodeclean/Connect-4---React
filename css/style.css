@@ -1,9 +1,9 @@
 body {
-  font: 14px "Century Gothic", Futura, sans-serif;
+  font: 18px "Century Gothic", Futura, sans-serif;
   margin: 20px;
 }
 
-.boardBg{
+.board{
   background-image: url('../asserts/bg.png');
   width: 651px;
   height: 504px;
@@ -14,10 +14,23 @@ body {
   margin: auto;
 }
 
-.board{
+.status{
+  margin-top: -136px;
+  margin-left: 15%;
+  font: 18px;
+
+}
+.status p{
+  background: #fff;
+  padding: 0px 10px;
+  display: inline-block;
+
+}
+
+.grid{
   width: 651px;
   height: 504px;
-  padding-left: 45px;
+  padding-left: 46px;
   padding-top: 78px;
   cursor: pointer;
 }
@@ -40,4 +53,12 @@ body {
 }
 .yellowCoin {
   background-image: radial-gradient(ellipse at center, yellow 44%, #cccc00 45%, #cccc00 59%, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0) 0%);
+}
+
+.r {
+  color: red;
+}
+
+.y {
+  color: yellow;
 }
