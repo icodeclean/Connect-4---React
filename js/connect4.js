@@ -31,24 +31,43 @@ class Board extends React.Component {
     };
   }
 
-renderCell(col, row) {
-  return <Cell cellValue={this.state.grid[row][col]} onClick={() => this.dropInColumn(col)}/>
-}
+  componentDidUpdate() {
+    if (!this.state.redIsNext) {
+      this.dropInColumn(this.computerPlay());
+    }
+  }
 
-dropInColumn(col) {
+dropInColumn(col, ) {
   const grid = this.state.grid.slice();
   for( var i = 5; i > -1; i--) {
     if (grid[i][col] == null){
       grid[i][col] = this.state.redIsNext ? 'r' : 'y';
       this.setState({ 
         grid: grid,
-        redIsNext: !this.state.redIsNext
+        redIsNext: !this.state.redIsNext,
       });
       return;
-    } 
+    }  
   }
 }
 
+computerPlay(){
+  const grid = this.state.grid.slice();
+  let availableCells = [];
+  grid[0].map(function(x, index) { 
+    if (x == null){
+      availableCells.push(index);
+    }
+  });
+
+  
+  //var columnPicked = Math.floor(Math.random()*(availableCells.length - 1));
+    return availableCells[0];
+}
+
+renderCell(col, row) {
+  return <Cell cellValue={this.state.grid[row][col]} onClick={() => this.dropInColumn(col)}/>
+}
   render() {
     return (
       <div className="boardBg">
