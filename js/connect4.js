@@ -59,10 +59,8 @@ computerPlay(){
       availableCells.push(index);
     }
   });
-
-  
-  //var columnPicked = Math.floor(Math.random()*(availableCells.length - 1));
-    return availableCells[0];
+  var comPick = Math.floor(Math.random() * availableCells.length);
+    return availableCells[comPick];
 }
 
 renderCell(col, row) {
