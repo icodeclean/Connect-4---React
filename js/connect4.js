@@ -45,7 +45,7 @@ class Board extends React.Component {
   }
 
   calculateWinner(grid) {
-    if (this.winHorizontal(grid) || this.winVertical(grid)) {
+    if (this.winHorizontal(grid) || this.winVertical(grid) || this.winDiagonal(grid)) {
       return true;
     }
     else {
@@ -74,6 +74,85 @@ class Board extends React.Component {
         return true;
       }
     } 
+    return false;
+  }
+
+  winDiagonal(grid) {
+    
+    var diagonal1 = '';
+    for (var r = 2; r < 6 ; r ++) {
+      diagonal1 += grid[r][r-2];
+    }
+
+    var diagonal2 = '';
+    for (var r = 1; r < 6 ; r ++) {
+      diagonal2 += grid[r][r-1];
+    }
+
+    var diagonal3 = '';
+    for (var r = 0; r < 6 ; r ++) {
+      diagonal3 += grid[r][r];
+    }
+
+    var diagonal4 = '';
+    for (var r = 0; r < 6 ; r ++) {
+      diagonal4 += grid[r][r+1];
+    }
+
+    var diagonal5 = '';
+    for (var r = 0; r < 5 ; r ++) {
+      diagonal5 += grid[r][r+2];
+    }
+
+    var diagonal6 = '';
+    for (var r = 0; r < 4 ; r ++) {
+      diagonal6 += grid[r][r+3];
+    }
+
+    var diagonal7 = '';
+    for (var r = 3, c = 0; r > -1 ; r--, c++) {
+      diagonal7 += grid[r][c];
+    }
+
+    var diagonal8 = '';
+    for (var r = 4, c = 0; r > -1 ; r--, c++) {
+      diagonal8 += grid[r][c];
+    }
+
+    var diagonal9 = '';
+    for (var r = 5, c = 0; r > -1 ; r--, c++) {
+      diagonal9 += grid[r][c];
+    }
+
+    var diagonal10 = '';
+    for (var r = 5, c = 1; r > -1 ; r--, c++) {
+      diagonal10 += grid[r][c];
+    }
+
+    var diagonal11 = '';
+    for (var r = 5, c = 2; r > 0 ; r--, c++) {
+      diagonal11 += grid[r][c];
+    }
+
+    var diagonal12 = '';
+    for (var r = 5, c = 3; r > 1 ; r--, c++) {
+      diagonal12 += grid[r][c];
+    }
+  
+    if ((this.winningString(diagonal1))   ||
+        (this.winningString(diagonal2))   ||
+        (this.winningString(diagonal3))   ||
+        (this.winningString(diagonal4))   ||
+        (this.winningString(diagonal5))   ||
+        (this.winningString(diagonal6))   ||
+        (this.winningString(diagonal7))   ||
+        (this.winningString(diagonal8))   ||
+        (this.winningString(diagonal9))   ||
+        (this.winningString(diagonal10))  ||
+        (this.winningString(diagonal11))  ||
+        (this.winningString(diagonal12)))  {
+      return true;
+      }
     return false;
   }
 
