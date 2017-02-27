@@ -23,6 +23,7 @@ body {
 .status p{
   background: #fff;
   padding: 0px 10px;
+  margin-right: 20px;
   display: inline-block;
 
 }

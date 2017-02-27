@@ -28,17 +28,39 @@ class Board extends React.Component {
               [null, null, null, null, null, null, null],
       ],
       redIsNext: true,
+      AI: false,
     };
   }
 
   componentDidUpdate() {
-    if (!this.state.redIsNext) {
+    if ((!this.state.redIsNext) && (this.state.AI)){
       this.dropInColumn(this.computerPlay());
     }
   }
 
-dropInColumn(col, ) {
+  calculateWinner(grid) {
+    if (this.winHorizontal() || this.winVertical()) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
+  winVertical() {
+    return false;
+  }
+
+  winHorizontal() {
+    return false;
+  }
+
+dropInColumn(col) {
   const grid = this.state.grid.slice();
+  const winner = this.calculateWinner(grid);
+  if (winner) {
+    return;
+  }
   for( var i = 5; i > -1; i--) {
     if (grid[i][col] == null){
       grid[i][col] = this.state.redIsNext ? 'r' : 'y';
@@ -63,10 +85,23 @@ computerPlay(){
     return availableCells[comPick];
 }
 
+toggleAI() {
+  this.setState({AI: !this.state.AI})
+}
+
 renderCell(col, row) {
   return <Cell cellValue={this.state.grid[row][col]} onClick={() => this.dropInColumn(col)}/>
 }
   render() {
+    const winner = this.calculateWinner(this.state.grid);
+    let status;
+    if (winner) {
+      status = 'Winner is ' + (!(this.state.redIsNext) ? "Red!" : "Yellow!");
+    } else {
+      status = (this.state.redIsNext ? "Red's Turn" : "Yellow's Turn");
+    }
+
+
     return (
       <div className="board">
         <div className="grid">
@@ -133,7 +168,10 @@ renderCell(col, row) {
             {this.renderCell(6, 5)}
           </div>
         </div>
-        <div className={"status " + (this.state.redIsNext ? 'r' : 'y')}><p>{this.state.redIsNext ? "Red's Turn" : "Yellow's Turn"}</p></div>
+        <div className={"status " + (this.state.redIsNext ? 'r' : 'y')}>
+          <a href="#" onClick={() => this.toggleAI()}>{this.state.AI ? 'Play vs Human' : 'Play vs Computer'}</a>
+          <p>{status}</p>
+          </div>
       </div>
     );
   }
