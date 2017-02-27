@@ -48,6 +48,15 @@ class Board extends React.Component {
   }
 
   winVertical(grid) {
+    for (var c = 0; c < 7; c++) {
+      let column = '';
+      for( var r = 0; r < 6; r++) {
+        column += grid[r][c];
+      }
+      if (column.includes('rrrr') || column.includes('yyyy')) {
+          return true;
+      }
+    }
     return false;
   }
 
