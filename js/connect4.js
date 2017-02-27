@@ -39,7 +39,7 @@ class Board extends React.Component {
   }
 
   calculateWinner(grid) {
-    if (this.winHorizontal() || this.winVertical()) {
+    if (this.winHorizontal(grid) || this.winVertical(grid)) {
       return true;
     }
     else {
@@ -47,11 +47,18 @@ class Board extends React.Component {
     }
   }
 
-  winVertical() {
+  winVertical(grid) {
     return false;
   }
 
-  winHorizontal() {
+  winHorizontal(grid) {
+    for( var i = 5; i > -1; i--) {
+      let row ='';
+      grid[i].map(function(x) {row += x;});
+      if (row.includes('rrrr') || row.includes('yyyy')) {
+        return true;
+      }
+    } 
     return false;
   }
 
@@ -95,10 +102,13 @@ renderCell(col, row) {
   render() {
     const winner = this.calculateWinner(this.state.grid);
     let status;
+    let statusColor;
     if (winner) {
       status = 'Winner is ' + (!(this.state.redIsNext) ? "Red!" : "Yellow!");
+      statusColor = (!(this.state.redIsNext) ? 'r' : 'y');
     } else {
       status = (this.state.redIsNext ? "Red's Turn" : "Yellow's Turn");
+      statusColor = (this.state.redIsNext ? 'r' : 'y');
     }
 
 
@@ -168,7 +178,7 @@ renderCell(col, row) {
             {this.renderCell(6, 5)}
           </div>
         </div>
-        <div className={"status " + (this.state.redIsNext ? 'r' : 'y')}>
+        <div className={"status " + statusColor}>
           <a href="#" onClick={() => this.toggleAI()}>{this.state.AI ? 'Play vs Human' : 'Play vs Computer'}</a>
           <p>{status}</p>
           </div>
