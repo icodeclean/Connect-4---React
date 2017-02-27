@@ -38,6 +38,12 @@ class Board extends React.Component {
     }
   }
 
+  winningString(string) {
+    if (string.includes('rrrr') || string.includes('yyyy')) {
+          return true;
+      }
+  }
+
   calculateWinner(grid) {
     if (this.winHorizontal(grid) || this.winVertical(grid)) {
       return true;
@@ -53,7 +59,7 @@ class Board extends React.Component {
       for( var r = 0; r < 6; r++) {
         column += grid[r][c];
       }
-      if (column.includes('rrrr') || column.includes('yyyy')) {
+      if (this.winningString(column)) {
           return true;
       }
     }
@@ -64,7 +70,7 @@ class Board extends React.Component {
     for( var i = 5; i > -1; i--) {
       let row ='';
       grid[i].map(function(x) {row += x;});
-      if (row.includes('rrrr') || row.includes('yyyy')) {
+      if (this.winningString(row)) {
         return true;
       }
     } 
@@ -187,9 +193,9 @@ renderCell(col, row) {
             {this.renderCell(6, 5)}
           </div>
         </div>
-        <div className={"status " + statusColor}>
-          <a href="#" onClick={() => this.toggleAI()}>{this.state.AI ? 'Play vs Human' : 'Play vs Computer'}</a>
-          <p>{status}</p>
+        <div className="dashboard">
+          <button className="button" onClick={() => this.toggleAI()}>{this.state.AI ? 'Play vs Human' : 'Play vs Computer'}</button>
+          <div className={"status "+ statusColor}>{status}</div>
           </div>
       </div>
     );

@@ -1,31 +1,56 @@
 body {
   font: 18px "Century Gothic", Futura, sans-serif;
   margin: 20px;
+  background: #f6c1c3;
 }
 
 .board{
-  background-image: url('../asserts/bg.png');
+  background-image: url('../asserts/bg.jpg');
   width: 651px;
   height: 504px;
   background-repeat: no-repeat;
   background-size: cover; 
-  background-color: #333;
+
   display: box;
   margin: auto;
+
 }
 
-.status{
-  margin-top: -136px;
-  margin-left: 15%;
+.dashboard{
+  margin-top: -125px;
+  margin-left: 10%;
   font: 18px;
 
 }
-.status p{
-  background: #fff;
-  padding: 0px 10px;
-  margin-right: 20px;
+.status {
+  font: 24px;
   display: inline-block;
+  width: 180px;
+  text-align: center;
+  margin-left: 33px
 
+}
+
+.button {
+    background-color: white;
+    width: 150px;
+    border: none;
+    color: #4CAF50;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 12px;
+    -webkit-transition-duration: 0.4s;
+    -moz-transition-duration: 0.4s;
+    -o-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    display: inline-block;
+}
+
+.button:hover {
+  background-color: #4CAF50; /* Green */
+  color: white;
 }
 
 .grid{
@@ -58,8 +83,14 @@ body {
 
 .r {
   color: red;
+  background-color: #fff;
+  border-radius: 9px;
+  padding: 5px;
 }
 
 .y {
-  color: yellow;
+  color: #000;
+  background-color: yellow;
+  border-radius: 9px;
+  padding: 5px;
 }
