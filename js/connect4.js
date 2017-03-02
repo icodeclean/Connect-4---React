@@ -1,7 +1,7 @@
 class Cell extends React.Component {
   cellClass(cellValue) {
-    if (cellValue == 'r') {
-      return 'redCoin'
+    if (cellValue == 'b') {
+      return 'blueCoin'
     } else if (cellValue == 'y') {
       return 'yellowCoin'
     } else {
@@ -27,19 +27,19 @@ class Board extends React.Component {
               [null, null, null, null, null, null, null],
               [null, null, null, null, null, null, null],
       ],
-      redIsNext: true,
+      blueIsNext: true,
       AI: false,
     };
   }
 
   componentDidUpdate() {
-    if ((!this.state.redIsNext) && (this.state.AI)){
+    if ((!this.state.blueIsNext) && (this.state.AI)){
       this.dropInColumn(this.computerPlay());
     }
   }
 
   winningString(string) {
-    if (string.includes('rrrr') || string.includes('yyyy')) {
+    if (string.includes('bbbb') || string.includes('yyyy')) {
       return true;
     }
   }
@@ -164,10 +164,10 @@ dropInColumn(col) {
   }
   for( var i = 5; i > -1; i--) {
     if (grid[i][col] == null){
-      grid[i][col] = this.state.redIsNext ? 'r' : 'y';
+      grid[i][col] = this.state.blueIsNext ? 'b' : 'y';
       this.setState({ 
         grid: grid,
-        redIsNext: !this.state.redIsNext,
+        blueIsNext: !this.state.blueIsNext,
       });
       return;
     }  
@@ -199,11 +199,11 @@ render() {
   let status;
   let statusColor;
   if (winner) {
-    status = 'Winner is ' + (!(this.state.redIsNext) ? "Red!" : "Yellow!");
-    statusColor = (!(this.state.redIsNext) ? 'r' : 'y');
+    status = 'Winner is ' + (!(this.state.blueIsNext) ? "Blue!" : "Yellow!");
+    statusColor = (!(this.state.blueIsNext) ? 'b' : 'y');
   } else {
-    status = (this.state.redIsNext ? "Red's Turn" : "Yellow's Turn");
-    statusColor = (this.state.redIsNext ? 'r' : 'y');
+    status = (this.state.blueIsNext ? "Blue's Turn" : "Yellow's Turn");
+    statusColor = (this.state.blueIsNext ? 'b' : 'y');
   }
 
   return (
